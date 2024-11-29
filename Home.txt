@@ -1,0 +1,2 @@
+Bem-vindo à nossa página inicial, utilize a navbar 
+            para ver as nossas informações

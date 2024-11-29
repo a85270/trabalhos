@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>TP2</title>
+</head>
+<body>
+    <header>InformatIse</header>
+
+    <nav>
+        <div class="menu-item" onclick="loadHome()">Home</div>
+        <div class="menu-item" onclick="loadSobre()">Sobre</div>
+        <div class="menu-item">Serviços
+            <div class="submenu">
+                <a href="#" onclick="loadRep()">Reparações</a>
+                <a href="#" onclick="loadOrc()">Orçamentos</a>
+                <a href="#" onclick="loadAp()">Apoio ao Cliente</a>
+            </div>
+        </div>
+        <div class="menu-item"><a href="#footer">Contato</a></div>
+    </nav>
+
+    <main>
+        <h2>Somos a melhor loja de informática do Algarve!</h2>
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="imagens_tp2/image1.jpg" width="100%">
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="imagens_tp2/image2.jpg" width="100%">
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="imagens_tp2/image3.jpg" width="100%">
+            </div>
+        </div>
+
+        <div id="ajax">
+            Bem-vindo à nossa página inicial, utilize a navbar 
+            para ver as nossas informações
+        </div>
+
+        <div class="gallery">
+            <img src="imagens_tp2/image1.jpg" alt="Imagem 1">
+            <img src="imagens_tp2/image2.jpg" alt="Imagem 2">
+            <img src="imagens_tp2/image3.jpg" alt="Imagem 3">
+        </div>
+
+        <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+          </div>
+    </main>
+
+    <footer id="footer">
+        Tp2-Site IrformatISE <br>
+
+        Os nossos contatos são: <br>
+        282567175 <br>
+        imorfatise@gmail.com
+    </footer>
+
+    <script>
+      $(document).ready(function() {
+        // Adicione interatividade ao seu menu aqui
+        $('.menu-item').hover(
+            function() {
+                $(this).css('background-color', '#ddd');
+                // Mostrar submenu
+                $(this).find('.submenu').stop(true, true).slideDown();
+            }, 
+            function() {
+                $(this).css('background-color', 'transparent');
+                // Esconder submenu
+                $(this).find('.submenu').stop(true, true).slideUp();
+            }
+        );
+
+        // Abrir janela pop-up com imagem ampliada ao clicar
+        $('.gallery img').click(function() {
+            var imgUrl = $(this).attr('src');
+            window.open(imgUrl, '_blank', 'width=800,height=600');
+        });
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+    });
+    $(document).ready(function() {
+        // Função para definir um cookie e enviar para o servidor
+        function setCookieAndSendToServer(name, value, days) {
+            setCookie(name, value, days); // Função setCookie definida anteriormente
+            // Envia os dados do cookie para o servidor
+            $.ajax({
+                url: 'store_cookies.php',
+                method: 'POST',
+                data: { name: name, value: value },
+                success: function(response) {
+                    console.log('Cookie enviado para o servidor com sucesso.');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro ao enviar cookie para o servidor:', error);
+                }
+            });
+        }
+
+        
+        $('.menu-item').hover(
+            function() {
+                $(this).css('background-color', '#ddd');
+                // Mostrar submenu
+                $(this).find('.submenu').stop(true, true).slideDown();
+            }, 
+            function() {
+                $(this).css('background-color', 'transparent');
+                // Esconder submenu
+                $(this).find('.submenu').stop(true, true).slideUp();
+            }
+        );
+
+    });
+
+    function loadHome() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+        document.getElementById("ajax").innerHTML =
+        this.responseText;
+    }
+        xhttp.open("GET", "Home.txt");
+        xhttp.send();
+    }
+
+    function loadSobre() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+        document.getElementById("ajax").innerHTML =
+        this.responseText;
+     }
+        xhttp.open("GET", "Sobre.txt");
+        xhttp.send();
+    }
+
+    function loadRep() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+        document.getElementById("ajax").innerHTML =
+        this.responseText;
+     }
+        xhttp.open("GET", "Rep.txt");
+        xhttp.send();
+    }
+
+    function loadOrc() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+        document.getElementById("ajax").innerHTML =
+        this.responseText;
+     }
+        xhttp.open("GET", "Orc.txt");
+        xhttp.send();
+    }
+
+    function loadAp() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+        document.getElementById("ajax").innerHTML =
+        this.responseText;
+     }
+        xhttp.open("GET", "Apoio.txt");
+        xhttp.send();
+    }
+
+    </script>
+</body>
+</html>

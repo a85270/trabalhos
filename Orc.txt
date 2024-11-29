@@ -1,0 +1,6 @@
+ <h3>Orçamentos</h3>
+                Os orçamentos para os nossos serviços variam: <br> 
+                Reparação: Depende das horas despendidas na reparação; <br>
+                Manutenção: Limpeza total do interior do computador - 20€ <br>
+                 Limpeza dos discos- 20€
+                 Melhoria de peças: Preço da peça + preço mão de obra

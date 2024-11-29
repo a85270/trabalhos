@@ -1,0 +1,8 @@
+<h3 ">Reparações</h3>
+        Efetuamos o diagnóstico e reparação de equipamentos informáticos: <br>
+                -Impressoras <br>
+                -Portáteis <br>
+                -Computadores <br>
+                -Ecrãs <br>
+                -Telemóveis <br> 
+                -Etc.
